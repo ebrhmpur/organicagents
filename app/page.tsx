@@ -1,437 +1,49 @@
 "use client";
-import { useState } from "react";
-import plisioLogoImage from "@/public/logos/plisio-plisio.png";
-import coingateLogoImage from "@/public/logos/coingate.png";
-import nowpayment from "@/public/logos/nowpayments.png";
+
 import Image from "next/image";
+import { Typewriter } from "react-simple-typewriter";
 import logoImage from "@/public/logos/main.svg";
-import { useActionState } from "react";
-import { TResObject } from "@/types";
-import { SA_submit_request } from "@/library/server-actions/SA_submit_request";
 
-export default function LandingPage() {
-  const [loading, setLoading] = useState(false);
-  const [gatewayState, setGatewayState] = useState<string | null>(null);
-  const [popUpState, setPopUpState] = useState<boolean>(false);
-  const [actionState, formAction, isLoading] = useActionState<
-    TResObject,
-    FormData
-  >(SA_submit_request, {});
-
-  const gatewayItems = [
-    { logo: plisioLogoImage, stateValue: "plisio" },
-    { logo: coingateLogoImage, stateValue: "coingate" },
-    { logo: nowpayment, stateValue: "nowPayment" },
-  ];
-
+export default function Home() {
   return (
-    <>
-      {popUpState && (
-        <div className="fixed top-0 left-0 bg-black/70 w-full h-full flex items-center justify-center backdrop-blur-md">
-          <div
-            className="flex flex-col gap-5 bg-white w-5/12 rounded-lg py-6 px-12 items-center
-          "
-          >
-            <Image src={logoImage} width={60} height={60} alt="logo" />
-            <div className="text-black text-center">
-              Your request has been successfully submitted! Thank you for your
-              interest. We’ve received your request and our team is currently
-              reviewing it. Within the next few hours, you’ll receive an email
-              containing a secure payment link to complete your order. If you
-              don’t receive the email within 6 hours, please check your spam
-              folder or contact our support team for assistance. Thank you for
-              choosing us!
-            </div>
-            <button className=" bg-indigo-600 rounded-xl py-3 w-full">
-              submit
-            </button>
+    <div className="relative flex flex-col items-center justify-center min-h-screen overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg,#ff5f6d,#ffc371,#7ee8fa,#b388ff,#ff5f6d)] animate-rotate opacity-70 blur-3xl"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(255,0,150,0.3),transparent_70%)] blur-2xl mix-blend-screen"></div>
+      </div>
+
+      <main className="flex flex-col items-center text-center px-6">
+        <div className="animate-float mb-8">
+          <div className="w-36 h-36 rounded-full  bg-white flex items-center justify-center">
+            <Image src={logoImage} width={80} height={80} alt="logo" />
           </div>
         </div>
-      )}
-      <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
-        <header className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div>
-                <Image src={logoImage} width={40} height={40} alt="logo" />
-              </div>
-              <div>
-                <h1 className="text-lg font-semibold">
-                  organicAgents (Trainable LLM)
-                </h1>
-                <p className="text-xs text-gray-500">
-                  Trainable · Scalable · Built for real-world automation
-                </p>
-              </div>
-            </div>
 
-            <nav className="flex items-center gap-4">
-              <a
-                className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg shadow hover:brightness-105"
-                href="#request-demo"
-              >
-                Request Product
-              </a>
-            </nav>
-          </div>
-        </header>
+        <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
+          <Typewriter
+            words={[
+              "Добро пожаловать в мир адаптивного искусственного интеллекта.",
+              "Технология, которая меняет бизнес.",
+            ]}
+            loop
+            cursor
+            cursorStyle="|"
+            typeSpeed={60}
+            deleteSpeed={40}
+            delaySpeed={1500}
+          />
+        </h1>
 
-        <main className="max-w-7xl mx-auto px-6 py-12">
-          {/* HERO */}
-          <section className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <h2 className="text-4xl font-extrabold leading-tight">
-                Your Business. Powered by a Custom AI Language Model.
-              </h2>
-              <p className="mt-4 text-lg text-gray-700">
-                Trainable · Scalable · Built for Real-World Automation
-              </p>
+        <p className="text-gray-300 max-w-2xl mb-8">
+          С нашими интеллектуальными системами любой бизнес может работать
+          быстрее, точнее и креативнее. Будущее уже наступило.
+        </p>
 
-              <p className="mt-6 text-gray-600">
-                Transform the way your business communicates. Build your own{" "}
-                <strong>LLM fine-tuned on your brand, data, and tone</strong> —
-                and generate powerful, on-brand content at scale.
-              </p>
-
-              <div className="mt-6 grid grid-cols-2 gap-3 text-sm text-gray-500">
-                <div>• Developers SDKs: Next.js · Node · Python</div>
-                <div>• Enterprise Privacy & Data Control</div>
-                <div>• Seamless API Integrations</div>
-                <div>• Train on your support & marketing data</div>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="rounded-2xl p-6 bg-gradient-to-br from-white to-gray-100 shadow-lg border border-gray-200">
-                <div className="text-sm text-gray-400 mb-3">
-                  Live sample: Marketing email generated by your model
-                </div>
-                <div className="bg-white p-5 rounded-lg border border-gray-100 shadow-sm">
-                  <h3 className="font-semibold">
-                    Subject: Introducing Your Next Game-Changer
-                  </h3>
-                  <p className="mt-3 text-gray-700 leading-relaxed">
-                    Hi there,
-                  </p>
-                  <p className="mt-2 text-gray-700 leading-relaxed">
-                    Subject: Transform the Way You Work — One Smart Digital Tool
-                    at a Time ⚡ Hi speed, Imagine having a tool that saves you
-                    hours every week, makes your work easier, and helps you
-                    achieve results that once felt out of reach. Sounds good?
-                    That’s exactly what leener is built for. We know how
-                    overwhelming it can feel to juggle multiple tools, tasks,
-                    and goals — that’s why we created a smarter solution. leener
-                    brings everything you need together in one powerful,
-                    easy-to-use digital product designed to simplify your
-                    workflow and maximize your results. ✨ Here’s what makes it
-                    different: Simplicity that works: No steep learning curves,
-                    no complicated setup. Real results, fast: See measurable
-                    improvements from day one. Trusted by professionals:
-                    Hundreds of creators, entrepreneurs, and teams rely on it
-                    daily. Lifetime access: One purchase, unlimited potential.
-                    Whether you’re just starting out or looking to take your
-                    productivity to the next level, leener gives you the edge
-                    you’ve been looking for. 💡 Special Launch Offer: For the
-                    next 48 hours only, you can get leener at an exclusive
-                    discounted price — and unlock bonuses worth over $100,
-                    completely free. 👉 hurry then Don’t wait — your future
-                    productivity (and peace of mind) will thank you. With
-                    appreciation, The leener Team
-                  </p>
-                  <p className="mt-2 text-gray-700">
-                    Would you like a quick demo?
-                  </p>
-                  <p className="mt-4 text-gray-500 text-sm">— The Team</p>
-                </div>
-              </div>
-
-              <div className="absolute -right-5 -bottom-8 w-56 h-56 rounded-full opacity-10 bg-gradient-to-br from-pink-400 to-indigo-500 blur-3xl"></div>
-            </div>
-          </section>
-
-          {/* FEATURES */}
-          <section id="features" className="mt-16">
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="p-6 bg-white rounded-2xl shadow border">
-                <h4 className="text-xl font-semibold">
-                  Trainable on Your Data
-                </h4>
-                <p className="mt-3 text-gray-600">
-                  Upload customer interactions, marketing content, and
-                  documentation—your LLM learns your voice and messaging
-                  perfectly.
-                </p>
-              </div>
-              <div className="p-6 bg-white rounded-2xl shadow border">
-                <h4 className="text-xl font-semibold">
-                  Intelligent Text Generation
-                </h4>
-                <p className="mt-3 text-gray-600">
-                  Automatically create engaging and persuasive content for
-                  emails, ads, chatbots, and social media.
-                </p>
-              </div>
-              <div className="p-6 bg-white rounded-2xl shadow border">
-                <h4 className="text-xl font-semibold">Seamless Integrations</h4>
-                <p className="mt-3 text-gray-600">
-                  Connect the model directly to your existing stack—CRM,
-                  website, or even a Telegram bot—using our simple API.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8 grid md:grid-cols-2 gap-6">
-              <div className="p-6 bg-white rounded-2xl shadow border">
-                <h4 className="text-xl font-semibold">Built for Developers</h4>
-                <p className="mt-3 text-gray-600">
-                  Full SDKs and documentation for Next.js, Node.js, and Python.
-                  Easily build chatbots, assistants, and automated content
-                  workflows.
-                </p>
-              </div>
-              <div className="p-6 bg-white rounded-2xl shadow border">
-                <h4 className="text-xl font-semibold">
-                  Enterprise-Grade Privacy
-                </h4>
-                <p className="mt-3 text-gray-600">
-                  Your data never leaves your environment. We guarantee total
-                  privacy and control over your model’s knowledge.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* USE CASES */}
-          <section className="mt-16">
-            <div className="flex items-center justify-between">
-              <h3 className="text-2xl font-semibold">Real-World Use Cases</h3>
-              <p className="text-sm text-gray-500">
-                From support automation to high-converting marketing copy.
-              </p>
-            </div>
-
-            <div className="mt-6 grid md:grid-cols-4 gap-6">
-              <div className="p-5 bg-white rounded-lg border shadow-sm">
-                <h5 className="font-semibold">Support Automation</h5>
-                <p className="mt-2 text-sm text-gray-600">
-                  Train on tickets and automate intelligent responses that match
-                  your brand voice.
-                </p>
-              </div>
-              <div className="p-5 bg-white rounded-lg border shadow-sm">
-                <h5 className="font-semibold">CRM Integration</h5>
-                <p className="mt-2 text-sm text-gray-600">
-                  Personalized follow-ups and proposal drafts directly from your
-                  CRM data.
-                </p>
-              </div>
-              <div className="p-5 bg-white rounded-lg border shadow-sm">
-                <h5 className="font-semibold">Marketing Campaigns</h5>
-                <p className="mt-2 text-sm text-gray-600">
-                  Generate ad copy, landing text, and newsletters optimized for
-                  conversions.
-                </p>
-              </div>
-              <div className="p-5 bg-white rounded-lg border shadow-sm">
-                <h5 className="font-semibold">Social & Content</h5>
-                <p className="mt-2 text-sm text-gray-600">
-                  Instant, on-brand social posts, captions, and blog outlines.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* PLAYGROUND */}
-          <section
-            id="playground"
-            className="mt-16 grid md:grid-cols-1 gap-8 items-start"
-          >
-            <div className="p-6 bg-gradient-to-br from-white to-gray-50 rounded-2xl border shadow">
-              <h4 className="text-xl font-semibold">Outcome & Results</h4>
-              <p className="mt-2 text-gray-600">
-                Your LLM becomes an intelligent content engine — always on,
-                always consistent, and continuously learning.
-              </p>
-
-              <div className="mt-6 grid gap-3">
-                <strong>Golden strengths:</strong>
-                <p className="text-sm text-gray-600 mt-1">
-                  ♦ Generate brand-consistent content 10× faster.
-                </p>
-                <p className="text-sm text-gray-600 mt-1">
-                  ♦ Automate customer communication without losing the brand
-                  voice.
-                </p>
-                <p className="text-sm text-gray-600 mt-1">
-                  ♦ Reduce content costs while increasing conversion and
-                  consistency.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* PRICING & CTA */}
-          <section id="pricing" className="mt-16">
-            <div className="bg-white p-8 rounded-2xl border shadow grid md:grid-cols-2 gap-6 items-center">
-              <div>
-                <h3 className="text-2xl font-semibold">
-                  Supercharge your business with custom AI intelligence
-                </h3>
-                <p className="mt-2 text-gray-600">
-                  Train your model today and start generating better content —
-                  faster.
-                </p>
-              </div>
-
-              <div className="p-4 bg-indigo-50 rounded-lg">
-                <h4 className="font-semibold">For Teams</h4>
-                <p className="text-sm text-gray-600 mt-1 mb-5">
-                  Model fine-tuning, private deployment, and integrations.
-                </p>
-                <a
-                  className="mt-4 text-2xl font-bold"
-                  href="mailto:example@gmail.com"
-                >
-                  Contact Sales
-                </a>
-              </div>
-            </div>
-
-            <div
-              id="request-demo"
-              className="mt-8 p-6 bg-white rounded-lg border shadow"
-            >
-              <h4 className="text-lg font-semibold">Request a Demo</h4>
-              <p className="text-sm text-gray-600 mt-2">
-                Enter your details and our team will schedule a personalized
-                walkthrough.
-              </p>
-
-              <form
-                id="submitRequest"
-                action={formAction}
-                className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-3"
-              >
-                <input
-                  name="name"
-                  className="p-3 border rounded-lg"
-                  placeholder="Full name"
-                />
-                <input
-                  name="email"
-                  className="p-3 border rounded-lg"
-                  placeholder="Work email"
-                />
-                <input
-                  name="company"
-                  className="p-3 border rounded-lg"
-                  placeholder="Company"
-                />
-                <input
-                name="discount_code"
-                  className="p-3 border rounded-lg"
-                  placeholder="Discount code"
-                />
-                <div className="grid grid-cols-3 gap-3">
-                  {gatewayItems.map((item, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => {
-                        setGatewayState(item.stateValue);
-                      }}
-                      className={`p-3 border rounded-lg flex flex-col gap-3 flex items-center justify-center ${
-                        item.stateValue == gatewayState && "bg-gray-200"
-                      }`}
-                    >
-                      <Image
-                        src={item.logo}
-                        width={40}
-                        height={40}
-                        alt="logo"
-                      />
-                      <span>{item.stateValue}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center">
-                  <strong>:Desire Gateway</strong>
-                </div>
-                <textarea
-                name="def"
-                  className="p-3 border rounded-lg md:col-span-3"
-                  placeholder="What do you want to achieve with an LLM?"
-                  rows={3}
-                ></textarea>
-                <button
-                  type="submit"
-                  form="submitRequest"
-                  className="md:col-span-3 px-5 py-3 bg-indigo-600 text-white rounded-lg"
-                >
-                  {loading ? "sending..." : "Request Product"}
-                </button>
-              </form>
-            </div>
-          </section>
-
-          {/* TRUST / TESTIMONIALS */}
-          <section className="mt-16">
-            <h4 className="text-xl font-semibold">
-              Trusted by teams building the future
-            </h4>
-            <p className="text-sm text-gray-500 mt-2">
-              Companies use custom LLMs to scale communication and boost
-              conversions.
-            </p>
-
-            <div className="mt-6 grid md:grid-cols-3 gap-6">
-              <div className="p-6 bg-white rounded-lg border shadow-sm">
-                <p className="text-gray-700">
-                  “Fine-tuning this model on our support tickets reduced
-                  response time by 60% while preserving our brand voice.”
-                </p>
-                <div className="mt-3 text-sm text-gray-500">
-                  — Head of Support, SaaS Company
-                </div>
-              </div>
-
-              <div className="p-6 bg-white rounded-lg border shadow-sm">
-                <p className="text-gray-700">
-                  “We shipped automated follow-ups integrated with our CRM —
-                  conversion rates increased across campaigns.”
-                </p>
-                <div className="mt-3 text-sm text-gray-500">
-                  — Growth Lead, E‑commerce
-                </div>
-              </div>
-
-              <div className="p-6 bg-white rounded-lg border shadow-sm">
-                <p className="text-gray-700">
-                  “The developer docs and SDKs made integration painless; we
-                  launched an AI assistant in under a week.”
-                </p>
-                <div className="mt-3 text-sm text-gray-500">
-                  — CTO, Marketplace
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* FOOTER */}
-          <footer className="mt-16 border-t pt-8 pb-12 text-sm text-gray-500">
-            <div className="flex items-center justify-between max-w-7xl mx-auto px-6">
-              <div>
-                © {new Date().getFullYear()} organicAgents — Trainable LLM for
-                Business
-              </div>
-              <div className="flex gap-4">
-                <a href="mailto:example@gmail.com" className="hover:underline">
-                  support@organicAgents.shop
-                </a>
-              </div>
-            </div>
-          </footer>
-        </main>
-      </div>
-    </>
+        <div className="flex gap-4 flex-wrap justify-center"></div>
+      </main>
+      <footer className="absolute bottom-6 text-sm text-gray-400">
+        © {new Date().getFullYear()}
+      </footer>
+    </div>
   );
 }
